@@ -1,13 +1,13 @@
 {
   "name": "example-ember-component-library",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Example EmberJS shared component library.",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "https://github.com/amaingot/example-ember-component-library",
   "license": "MIT",
-  "author": "",
+  "author": "Alex Maingot (alex@maingot.us)",
   "directories": {
     "doc": "doc",
     "test": "tests"
