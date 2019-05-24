@@ -18,16 +18,22 @@ jobs:
           command: npm install
 
       - run:
-          name: Run all of the tests
-          command: npm run test:all
-
-      - run:
           name: Run the linter on the templates
           command: npm run lint:hbs
 
       - run:
           name: Run the linter on the javascript
           command: npm run lint:js
+
+      - run:
+          name: Add headless chrome to container
+          command: |
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+
+      - run:
+          name: Run all of the tests
+          command: npm run test:all
 
       - run:
           name: Build the package
