@@ -1,0 +1,49 @@
+version: 2.1
+
+jobs:
+  build:
+    example-ember-component-library: ~/
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies
+
+      - run:
+          name: Install all packages
+          command: npm install
+
+      - run:
+          name: Run all of the tests
+          command: npm run test:all
+
+      - run:
+          name: Run the linter on the templates
+          command: npm run lint:hbs
+
+      - run:
+          name: Run the linter on the javascript
+          command: npm run lint:js
+
+      - run:
+          name: Build the package
+          command: npm run build
+
+      - save_cache:
+          paths:
+              - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+
+      - persist_to_workspace:
+          root: ./
+          paths:
+              - ./
+
+workflows:
+  eecl:
+    jobs:
+      - build
