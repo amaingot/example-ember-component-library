@@ -29,7 +29,7 @@ jobs:
           name: Add headless chrome to container
           command: |
             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
+            sudo dpkg -i google-chrome-stable_current_amd64.deb; sudo apt-get -fy install
 
       - run:
           name: Run all of the tests
