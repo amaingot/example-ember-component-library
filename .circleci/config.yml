@@ -30,7 +30,7 @@ jobs:
 
       - run:
           name: Run all of the tests
-          command: yarn test:all
+          command: yarn test
 
       - run:
           name: Build the package
