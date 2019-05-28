@@ -1,52 +1,8 @@
-version: 2.1
-
+version: 2
 jobs:
   build:
-    working_directory: ~/example-ember-component-library
-    docker:
-      - image: circleci/node:10-browsers
+    docker: # use the docker executor type; machine and macos executors are also supported
+      - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
     steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
-            - v1-dependencies
-
-      - run:
-          name: Install all packages
-          command: npm install
-
-      - run:
-          name: Run the linter on the template files
-          command: npm run lint:hbs
-
-      - run:
-          name: Run the linter on the javascript files
-          command: npm run lint:js
-
-      - run:
-          name: Run all of the tests
-          command: npm run test:all
-
-      - run:
-          name: Build the package
-          command: npm run build
-
-      - save_cache:
-          paths:
-              - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
-
-      - persist_to_workspace:
-          root: ./
-          paths:
-              - ./
-
-workflows:
-  eecl:
-    jobs:
-      - build:
-          branches:
-            ignore:
-              - gh-pages
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
