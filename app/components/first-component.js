@@ -1,0 +1,1 @@
+export { default } from 'example-ember-component-library/components/first-component';
