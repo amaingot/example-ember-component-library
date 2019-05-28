@@ -1,0 +1,9 @@
+version: 2.1
+
+workflows:
+  eecl:
+    jobs:
+      - build:
+          branches:
+            ignore:
+              - gh-pages
