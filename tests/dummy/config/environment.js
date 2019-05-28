@@ -31,17 +31,17 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
-  if (environment === 'test') {
-    // Testem prefers this...
-    ENV.locationType = 'none';
+  // if (environment === 'test' && false) {
+  //   // Testem prefers this...
+  //   ENV.locationType = 'none';
 
-    // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = true;
-    ENV.APP.LOG_VIEW_LOOKUPS = true;
+  //   // keep test console output quieter
+  //   ENV.APP.LOG_ACTIVE_GENERATION = true;
+  //   ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.APP.rootElement = '#ember-testing';
-    ENV.APP.autoboot = false;
-  }
+  //   ENV.APP.rootElement = '#ember-testing';
+  //   ENV.APP.autoboot = false;
+  // }
 
   if (environment === 'production') {
     // Allow ember-cli-addon-docs to update the rootURL in compiled assets
