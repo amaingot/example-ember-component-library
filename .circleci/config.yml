@@ -22,23 +22,23 @@ jobs:
 
       - run:
           name: Run the linter on the templates
-          command: npm install lint:hbs
+          command: npm run lint:hbs
 
       - run:
           name: Run the linter on the javascript
-          command: npm install lint:js
+          command: npm run lint:js
 
       - run:
           name: Run the first test
-          command: npm install test
+          command: npm run test
 
       - run:
           name: Run all of the tests
-          command: npm install test:all
+          command: npm run test:all
 
       - run:
           name: Build the package
-          command: npm install build
+          command: npm run build
 
       - save_cache:
           paths:
