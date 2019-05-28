@@ -5,8 +5,8 @@ orbs:
 
 jobs:
   deploy:
-    docker: 
-      - image: circleci/node:8 # the primary container, where your job's commands are run
+    docker:
+      - image: circleci/python:2.7-jessie
     steps:
       - aws-cli/install
       - aws-cli/configure
