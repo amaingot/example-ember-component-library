@@ -18,27 +18,31 @@ jobs:
 
       - run:
           name: Install all packages
-          command: yarn
+          command: npm install
 
       - run:
           name: Run the linter on the template files
-          command: yarn lint:hbs
+          command: npm run lint:hbs
 
       - run:
           name: Run the linter on the javascript files
-          command: yarn lint:js
+          command: npm run lint:js
+
+      - run:
+          name: Run the first test
+          command: npm run test
 
       - run:
           name: Run all of the tests
-          command: yarn test
+          command: npm run test:all
 
       - run:
           name: Build the package
-          command: yarn build
+          command: npm run build
 
       - run:
           name: Deploy this version of the docs
-          command: yarn deploy
+          command: npm run deploy
 
       # - save_cache:
       #     paths:
