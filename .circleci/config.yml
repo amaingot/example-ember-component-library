@@ -18,11 +18,11 @@ jobs:
           command: npm install
 
       - run:
-          name: Run the linter on the templates
+          name: Run the linter on the template files
           command: npm run lint:hbs
 
       - run:
-          name: Run the linter on the javascript
+          name: Run the linter on the javascript files
           command: npm run lint:js
 
       - run:
