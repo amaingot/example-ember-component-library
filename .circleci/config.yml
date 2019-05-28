@@ -10,6 +10,7 @@ jobs:
     steps:
       - aws-cli/install
       - aws-cli/configure
+      - checkout
       - run:
           name: Deploy addon docs to S3
           command: aws s3 sync ./ s3://ember-ui-lib.hmm.dev --acl public-read
