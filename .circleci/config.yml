@@ -67,12 +67,14 @@ workflows:
   eecl:
     jobs:
       - build:
+          context: maingot
           filters:
             branches:
               only: /.*/
             tags:
               only: /^v.*/
       - deploy:
+          context: maingot
           requires:
             - build
           filters:
