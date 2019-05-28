@@ -4,3 +4,9 @@ declare module 'example-ember-component-library/templates/*' {
   const tmpl: TemplateFactory;
   export default tmpl;
 }
+
+declare module '*.hbs' { 
+  import { TemplateFactory } from 'htmlbars-inline-precompile';
+  const tmpl: TemplateFactory;
+  export default tmpl;
+}

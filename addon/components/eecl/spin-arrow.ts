@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import layout from 'example-ember-component-library/templates/components/eecl/spin-arrow';
+import layout from '../../templates/components/eecl/spin-arrow.hbs';
 
 export default Component.extend({
   layout
