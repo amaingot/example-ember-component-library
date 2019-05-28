@@ -65,15 +65,16 @@ jobs:
 workflows:
   eecl:
     jobs:
-      - build
+      - build:
           filters:
             branches:
               only: /.*/
             tags:
               only: /^v.*/
-      - deploy
+      - deploy:
           requires:
             - build
+          filters:
             tags:
               only: /^v.*/
             branches:
