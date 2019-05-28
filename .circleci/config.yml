@@ -1,10 +1,13 @@
 version: 2.1
 
+defaults: &defaults
+  working_directory: ~/example-ember-component-library
+  docker:
+    - image: circleci/node:8-browsers
+
 jobs:
   build:
-    working_directory: ~/example-ember-component-library
-    docker:
-      - image: circleci/node:10-browsers
+    <<: *defaults  
     steps:
       - checkout
 
@@ -46,8 +49,32 @@ jobs:
           root: ./
           paths:
               - ./
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+        at: ~/example-ember-component-library
+      - run: 
+          name: Authenticate with NPM registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
+
 
 workflows:
   eecl:
     jobs:
       - build
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /^v.*/
+      - deploy
+          requires:
+            - build
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
