@@ -49,11 +49,12 @@ jobs:
           root: ./
           paths:
               - ./
+
   deploy:
     <<: *defaults
     steps:
       - attach_workspace:
-        at: ~/example-ember-component-library
+          at: ./
       - run: 
           name: Authenticate with NPM registry
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
