@@ -1,49 +1,79 @@
 version: 2.1
 
+defaults: &defaults
+  working_directory: ~/example-ember-component-library
+  docker:
+    - image: circleci/node:8-browsers
+
 jobs:
   build:
-    working_directory: ~/example-ember-component-library
-    docker:
-      - image: circleci/node:10-browsers
+    <<: *defaults  
     steps:
       - checkout
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-{{ checksum "yarn.lock" }}
             - v1-dependencies
 
       - run:
           name: Install all packages
-          command: npm install
+          command: yarn
 
       - run:
           name: Run the linter on the templates
-          command: npm run lint:hbs
+          command: yarn lint:hbs
 
       - run:
           name: Run the linter on the javascript
-          command: npm run lint:js
+          command: yarn lint:js
 
       - run:
           name: Run all of the tests
-          command: npm run test:all
+          command: yarn test:all
 
       - run:
           name: Build the package
-          command: npm run build
+          command: yarn build
 
       - save_cache:
           paths:
               - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - persist_to_workspace:
           root: ./
           paths:
               - ./
 
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: 
+          name: Authenticate with NPM registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
+
 workflows:
   eecl:
     jobs:
-      - build
+      - build:
+          context: maingot
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /^v.*/
+      - deploy:
+          context: maingot
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
