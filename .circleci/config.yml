@@ -1,9 +1,9 @@
-version: 2.1
-
 workflows:
-  eecl:
+  version: 2
+
+  build:
     jobs:
-      - build:
+      - job1:
           branches:
             ignore:
               - gh-pages
