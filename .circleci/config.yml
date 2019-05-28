@@ -11,10 +11,10 @@ jobs:
     steps:
       - checkout
 
-      # - restore_cache:
-      #     keys:
-      #       - v1-dependencies-{{ checksum "yarn.lock" }}
-      #       - v1-dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies
 
       - run:
           name: Install all packages
@@ -44,10 +44,10 @@ jobs:
           name: Deploy this version of the docs
           command: yarn deploy
 
-      # - save_cache:
-      #     paths:
-      #         - node_modules
-      #     key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - save_cache:
+          paths:
+              - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       - persist_to_workspace:
           root: ./
