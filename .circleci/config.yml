@@ -13,37 +13,37 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             - v1-dependencies
 
       - run:
           name: Install all packages
-          command: yarn
+          command: npm install
 
       - run:
           name: Run the linter on the templates
-          command: yarn lint:hbs
+          command: npm install lint:hbs
 
       - run:
           name: Run the linter on the javascript
-          command: yarn lint:js
+          command: npm install lint:js
 
       - run:
           name: Run the first test
-          command: yarn test
+          command: npm install test
 
       - run:
           name: Run all of the tests
-          command: yarn test:all
+          command: npm install test:all
 
       - run:
           name: Build the package
-          command: yarn build
+          command: npm install build
 
       - save_cache:
           paths:
               - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
 
       - persist_to_workspace:
           root: ./
