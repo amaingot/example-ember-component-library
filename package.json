@@ -20,7 +20,8 @@
     "test": "ember test",
     "test:all": "ember try:each",
     "prepublishOnly": "ember ts:precompile",
-    "postpublish": "ember ts:clean"
+    "postpublish": "ember ts:clean",
+    "eslint-config-check": "eslint --print-config . | eslint-config-prettier-check"
   },
   "dependencies": {
     "ember-cli-babel": "^7.7.3",
@@ -37,6 +38,7 @@
     "@types/ember__test-helpers": "^0.7.8",
     "@types/qunit": "^2.9.0",
     "@types/rsvp": "^4.0.2",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-cli": "~3.10.1",
     "ember-cli-dependency-checker": "^3.1.0",
@@ -56,9 +58,12 @@
     "ember-source": "~3.10.0",
     "ember-source-channel-url": "^1.1.0",
     "ember-try": "^1.0.0",
+    "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-ember": "^6.2.0",
     "eslint-plugin-node": "^9.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
     "loader.js": "^4.7.0",
+    "prettier": "^1.17.1",
     "qunit-dom": "^0.8.4",
     "typescript": "^3.4.5"
   },
