@@ -47,7 +47,7 @@ jobs:
           name: Deploy this version of the docs
           command: yarn deploy
           environment:
-            DEPLOY_KEY: `cat ~/.ssh/id_rsa`
+            DEPLOY_KEY: "`cat ~/.ssh/id_rsa`"
 
       - save_cache:
           paths:
