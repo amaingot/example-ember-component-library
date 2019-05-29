@@ -7279,7 +7279,7 @@ n=t(i).concat(n)}},e.getDOM=function(e){var t=e.renderer
 if(!t._dom){var r=Ember.getOwner?Ember.getOwner(e):e.container,n=r.lookup("service:-document")
 if(n)return n
 t=r.lookup("renderer:-dom")}if(t._dom&&t._dom.document)return t._dom.document
-throw new Error("ember-wormhole could not get DOM")}}),define("example-ember-component-library/components/eecl/spin-arrow",["exports","example-ember-component-library/templates/components/eecl/spin-arrow.hbs"],function(e,t){"use strict"
+throw new Error("ember-wormhole could not get DOM")}}),define("example-ember-component-library/components/eecl/spin-arrow",["exports","example-ember-component-library/templates/components/eecl/spin-arrow"],function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var r=Ember.Component.extend({layout:t.default})
 e.default=r}),define("example-ember-component-library/templates/components/eecl/spin-arrow",["exports"],function(e){"use strict"
