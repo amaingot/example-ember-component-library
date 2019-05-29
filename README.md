@@ -1,6 +1,8 @@
 example-ember-component-library
 ==============================================================================
 
+[![CircleCI](https://circleci.com/gh/amaingot/example-ember-component-library.svg?style=svg)](https://circleci.com/gh/amaingot/example-ember-component-library)
+
 [Short description of the addon.]
 
 
