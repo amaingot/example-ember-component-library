@@ -2,6 +2,7 @@ version: 2.1
 
 defaults: &defaults
   working_directory: ~/example-ember-component-library
+  parallelism: 1
   docker:
     - image: circleci/node:8-browsers
 
