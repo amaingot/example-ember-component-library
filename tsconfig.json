@@ -33,9 +33,6 @@
       "example-ember-component-library/*": [
         "addon/*"
       ],
-      "example-ember-component-library/addon/*": [
-        "addon/*"
-      ],
       "example-ember-component-library/test-support": [
         "addon-test-support"
       ],
