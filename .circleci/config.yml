@@ -12,6 +12,10 @@ jobs:
   build:
     <<: *defaults  
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "fb:83:c7:e9:d7:cd:e6:76:85:e7:be:8e:e6:69:3b:e7"
+
       - checkout
 
       - restore_cache:
@@ -42,10 +46,6 @@ jobs:
       - run:
           name: Build the package
           command: yarn build
-
-      - add_ssh_keys:
-          fingerprints:
-            - "fb:83:c7:e9:d7:cd:e6:76:85:e7:be:8e:e6:69:3b:e7"
 
       - run:
           name: Deploy this version of the docs
