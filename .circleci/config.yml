@@ -50,6 +50,8 @@ jobs:
       - run:
           name: Deploy this version of the docs
           command: yarn deploy
+          environment:
+            CI: 0
 
       - save_cache:
           paths:
