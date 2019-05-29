@@ -35,9 +35,9 @@ jobs:
           name: Run the first test
           command: yarn test
 
-      - run:
-          name: Run all of the tests
-          command: yarn test:all
+      # - run:
+      #     name: Run all of the tests
+      #     command: yarn test:all
 
       - run:
           name: Build the package
