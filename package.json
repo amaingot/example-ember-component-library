@@ -1,13 +1,23 @@
 {
   "name": "example-ember-component-library",
   "version": "0.0.0",
+  "private": false,
+  "author": "Alex Maingot (alex@maingot.us)",
   "description": "Example EmberJS shared component library.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "typescript",
+    "ember-addon-docs"
   ],
-  "repository": "https://github.com/amaingot/example-ember-component-library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amaingot/example-ember-component-library.git"
+  },
   "license": "MIT",
-  "author": "Alex Maingot (alex@maingot.us)",
+  "bugs": {
+    "url": "https://github.com/amaingot/example-ember-component-library/issues"
+  },
+  "homepage": "https://ember-ui-lib.hmm.dev/",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -22,6 +32,7 @@
     "test:all": "ember try:each",
     "prepublishOnly": "ember ts:precompile",
     "postpublish": "ember ts:clean",
+    "release": "npm publish --tag latest",
     "eslint-config-check": "eslint --print-config . | eslint-config-prettier-check"
   },
   "dependencies": {
@@ -79,6 +90,5 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  },
-  "homepage": "https://amaingot.github.io/example-ember-component-library"
+  }
 }
