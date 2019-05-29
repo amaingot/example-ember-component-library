@@ -1,0 +1,25 @@
+version: 2.1
+
+ orbs:
+  aws-cli: circleci/aws-cli@0.1.1
+
+ jobs:
+  deploy:
+    docker:
+      - image: circleci/python:2.7-jessie
+    steps:
+      - aws-cli/install
+      - aws-cli/configure
+      - checkout
+      - run:
+          name: Deploy addon docs to S3
+          command: aws s3 sync ./ s3://ember-ui-lib.hmm.dev --acl public-read
+      - run:
+          name: Purge CDN cache
+          command: aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
+
+ workflows:
+  eecl:
+    jobs:
+      - deploy:
+          context: maingot
