@@ -75,7 +75,7 @@ jobs:
 workflows:
   eecl:
     jobs:
-      - build:
+      - build-test:
           context: maingot
           filters:
             branches:
