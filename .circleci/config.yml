@@ -9,59 +9,63 @@ defaults: &defaults
     JOBS: 1 # https://github.com/emberjs/ember.js/issues/15641
 
 jobs:
-  build:
+  build-test:
     <<: *defaults  
     steps:
       - checkout
-
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "yarn.lock" }}
             - v1-dependencies
-
       - run:
           name: Install all packages
           command: yarn
-
       - run:
           name: Run the linter on the template files
           command: yarn lint:hbs
-
       - run:
           name: Run the linter on the javascript & typescript files
           command: yarn lint:js
-
       - run:
           name: Run the first test
           command: yarn test
-
-      # - run:
-      #     name: Run all of the tests
-      #     command: yarn test:all
-
-      - run:
-          name: Build the package
-          command: yarn build
-
-      - run:
-          name: Deploy this version of the docs
-          command: DEPLOY_KEY=`cat ~/.ssh/id_rsa` yarn deploy
-
       - run:
           name: Run Danger.JS
           command: yarn danger ci
-
       - save_cache:
           paths:
               - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
-
       - persist_to_workspace:
           root: ./
           paths:
               - ./
 
-  deploy:
+  integration-tests:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Run all of the tests
+          command: yarn test:all
+
+  deploy-docs:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - add_ssh_keys:
+          fingerprints:
+              - "30:d0:d8:ca:49:89:d5:89:c0:ef:0f:91:91:4b:1c:f1"
+      - run:
+          name: Avoid hosts unknown for github
+          command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
+          name: Deploy this version of the docs
+          command: DEPLOY_KEY=`cat ~/.ssh/id_rsa_30d0d8ca4989d589c0ef0f91914b1cf1` yarn deploy
+
+  publish:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -77,19 +81,38 @@ jobs:
 workflows:
   eecl:
     jobs:
-      - build:
+      - build-test:
           context: maingot
           filters:
             branches:
               only: /.*/
             tags:
               only: /^v.*/
-      - deploy:
+
+      - integration-tests:
           context: maingot
           requires:
-            - build
+            - build-test
           filters:
+            branches:
+              only: /master/
+
+      - deploy-docs:
+          context: maingot
+          requires:
+            - build-test
+          filters:
+            branches:
+              only: /.*/
             tags:
               only: /^v.*/
+
+      - publish:
+          context: maingot
+          requires:
+            - build-test
+            - integration-tests
+            - deploy-docs
+          filters:
             branches:
               only: /master/
