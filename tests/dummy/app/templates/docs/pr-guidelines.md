@@ -20,11 +20,11 @@ can change the body and footer of the commit. The header has a special format th
 a **scope** and a **subject**:
 
 ```
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
+{type}({scope}): {subject}
+    ## blank line
+{body}
+    ## blank line
+{footer}
 ```
 
 The **header** is mandatory and the **scope** of the header is optional.

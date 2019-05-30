@@ -4,12 +4,12 @@ Spin arrow content
 
 see this thing works
 
-{{spin-arrow}}
+{{eecl/spin-arrow}}
 
 {{#docs-demo as |demo|}}
   {{#demo.example name='spin-arrow-basic.hbs'}}
     <div>
-      {{spin-arrow}}
+      {{eecl/spin-arrow}}
     </div>
   {{/demo.example}}
 
