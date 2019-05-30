@@ -12,6 +12,10 @@ Router.map(function() {
     this.route('usage');
   });
   this.route('not-found', { path: '/*path' });
+  this.route('adding-docs');
+  this.route('pr-guidelines');
+  this.route('components');
+  this.route('spin-arrow');
 });
 
 export default Router;
