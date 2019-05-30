@@ -47,6 +47,10 @@ jobs:
           name: Deploy this version of the docs
           command: DEPLOY_KEY=`cat ~/.ssh/id_rsa` yarn deploy
 
+      - run:
+          name: Run Danger.JS
+          command: yarn danger ci
+
       - save_cache:
           paths:
               - node_modules

@@ -1,5 +1,3 @@
-export default config;
-
 /**
  * Type declarations for
  *    import config from './config/environment'
@@ -8,9 +6,12 @@ export default config;
  * since different ember addons can materialize new entries.
  */
 declare const config: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   environment: any;
   modulePrefix: string;
   podModulePrefix: string;
   locationType: string;
   rootURL: string;
 };
+
+export default config;
