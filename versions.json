@@ -5,22 +5,10 @@
     "sha": "13d4a2acdb9aed71355ac8b6a7cc30d6f56db281",
     "tag": null
   },
-  "v0.0.1": {
-    "path": "versions/v0.0.1",
-    "name": "v0.0.1",
-    "sha": "08ac4fd8d44e4c7cde0b7292e2355f9295fb6f34",
-    "tag": "v0.0.1"
-  },
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "bb4aa8d7907713394d5c2862372a6f32e47f79cc",
-    "tag": "v0.0.2"
-  },
-  "v0.0.2": {
-    "path": "versions/v0.0.2",
-    "name": "v0.0.2",
-    "sha": "bb4aa8d7907713394d5c2862372a6f32e47f79cc",
-    "tag": "v0.0.2"
+    "sha": "13d4a2acdb9aed71355ac8b6a7cc30d6f56db281",
+    "tag": null
   }
 }
