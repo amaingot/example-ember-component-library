@@ -21,8 +21,10 @@ const commitTypes = [
 
 const components = ['spin-arrow'];
 
+const componentRegex = components.map(c => `\\(${c}\\)`);
+
 const prTitleRegex = new RegExp(
-  '^(' + commitTypes.join('|') + ')(' + components.join('|') + '|\\*|):s.*$'
+  '^(' + commitTypes.join('|') + ')(' + componentRegex.join('|') + '|):\\s.*$'
 );
 const correctlyFormattedPrTitle = danger.github.pr.title.match(prTitleRegex);
 
