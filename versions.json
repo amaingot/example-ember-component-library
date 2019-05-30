@@ -22,5 +22,11 @@
     "name": "v1.0.0",
     "sha": "e68f4ed23e473a0b3fa2cdf3c58de9bc5b6e75c0",
     "tag": "v1.0.0"
+  },
+  "contribution-documentation": {
+    "path": "versions/contribution-documentation",
+    "name": "contribution-documentation",
+    "sha": "eacb8240885ada38e184d70afed48fbc2cf03d1e",
+    "tag": null
   }
 }
