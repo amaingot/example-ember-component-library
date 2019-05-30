@@ -59,6 +59,9 @@ jobs:
           fingerprints:
               - "30:d0:d8:ca:49:89:d5:89:c0:ef:0f:91:91:4b:1c:f1"
       - run:
+          name: Avoid hosts unknown for github
+          command: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run:
           name: Deploy this version of the docs
           command: DEPLOY_KEY=`cat ~/.ssh/id_rsa_30d0d8ca4989d589c0ef0f91914b1cf1` yarn deploy
 
